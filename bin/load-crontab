@@ -1,5 +1,5 @@
 #!/bin/bash
 
-source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/system.env || exit 1
+source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/env || exit 1
 
 cat ${CRON_HOME}/conf/crontab | crontab - && crontab -l
