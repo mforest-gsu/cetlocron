@@ -1,0 +1,13 @@
+#!/bin/bash
+
+source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/env || exit 1
+_prepare_locking
+exlock_now || exit 1
+exec >> ${APP_LOG} 2>&1
+cd ${APP_DIR}
+
+RUN_ID=$(${CRON_HOME}/bin/healthcheck-start "fa5c1aaa-0153-4b66-9e83-143a3991a9f9" $RUN_ID)
+mysql < ./instructordashboard-EnrollmentHistory.sql
+mysql < ./instructordashboard-EnrollmentTable.sql
+mysql < ./makeCourseWeb.sql
+${CRON_HOME}/bin/healthcheck-finish "fa5c1aaa-0153-4b66-9e83-143a3991a9f9" $RUN_ID
