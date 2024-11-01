@@ -4,10 +4,10 @@ source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/env || exit 1
 _prepare_locking
 exlock_now || exit 1
 exec >> ${APP_LOG} 2>&1
-
 cd ${APP_DIR}
-php-cron ${APP_DIR} ./bin/console biprod:sso \
-  && ./bin/console biprod:sis \
-  && ./bin/console biprod:d2l \
-  && ./bin/console biprod:lms \
-  && ./bin/console biprod:skill
+
+php-cron ${APP_DIR} ./bin/console biprod:sso || exit 1
+./bin/console biprod:sis || exit 1
+./bin/console biprod:d2l || exit 1
+./bin/console biprod:lms || exit 1
+./bin/console biprod:skill || exit 1
