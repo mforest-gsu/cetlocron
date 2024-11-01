@@ -7,6 +7,6 @@ export APP_LOG=${CRON_LOGS}/${APP_NAME}-${APP_ENV}-$(date +\%Y-\%m-\%d).out
 _prepare_locking
 exlock_now || exit 1
 exec >> ${APP_LOG} 2>&1
-
 cd ${APP_DIR}
+
 [ -n "${1}" ] && [ -n "${2}" ] && ./bin/crons/run ${APP_PING}

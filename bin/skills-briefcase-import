@@ -4,7 +4,7 @@ source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/env || exit 1
 _prepare_locking
 exlock_now || exit 1
 exec >> ${APP_LOG} 2>&1
-
 cd ${APP_DIR}
-mysql SkillsBriefcase < ${APP_DIR}/SkillsBriefcase_schema.sql
-mysql SkillsBriefcase < ${APP_DIR}/SkillsBriefcase_data.sql
+
+mysql SkillsBriefcase < ./SkillsBriefcase_schema.sql
+mysql SkillsBriefcase < ./SkillsBriefcase_data.sql

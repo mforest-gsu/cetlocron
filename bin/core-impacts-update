@@ -5,6 +5,6 @@ export APP_DIR=${CRON_APPS}/core-impacts-import
 _prepare_locking
 exlock_now || exit 1
 exec >> ${APP_LOG} 2>&1
-
 cd ${APP_DIR}
+
 ./bin/console -vvv app:sync-course-sections
