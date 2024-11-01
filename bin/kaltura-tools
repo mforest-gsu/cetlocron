@@ -1,0 +1,11 @@
+#!/bin/bash
+
+source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/env || exit 1
+_prepare_locking
+exlock_now || exit 1
+exec >> ${APP_LOG} 2>&1
+
+RUN_ID=$(${CRON_HOME}/bin/healthcheck-start "84e05da1-9e87-467b-9f57-cdf32f30910f")
+php ./bin/kalturaTools.php importMediaRecords
+php ./bin/kalturaTools.php fixStudentOwnership
+${CRON_HOME}/bin/healthcheck-finish "84e05da1-9e87-467b-9f57-cdf32f30910f" $RUN_ID

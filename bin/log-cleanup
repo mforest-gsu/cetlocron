@@ -1,0 +1,15 @@
+#!/bin/bash
+
+source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/env || exit 1
+_prepare_locking
+exlock_now || exit 1
+exec >> ${APP_LOG} 2>&1
+
+cd ${CRON_LOGS}
+uptime
+echo
+echo "Deleted files:"
+for file in $(find -type f -mtime +90); do echo $(realpath ${file}); rm -f ${file}; done
+echo
+echo "Compressed files:"
+for file in $(find -type f -mtime +7 | grep -v ".gz$"); do echo $(realpath ${file}); gzip ${file}; done

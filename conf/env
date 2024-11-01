@@ -1,0 +1,6 @@
+#!/bin/bash
+
+CONF_DIR=$(dirname $(realpath ${BASH_SOURCE[0]}))
+source ${CONF_DIR}/system.env || exit 1
+source ${CONF_DIR}/cron.env || exit 1
+source ${CONF_DIR}/app.env || exit 1

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/env || exit 1
+export APP_DIR=${CRON_APPS}/admindashboard-cli
+_prepare_locking
+exlock_now || exit 1
+exec >> ${APP_LOG} 2>&1
+
+RUN_ID=$(${CRON_HOME}/bin/healthcheck-start "8398ee68-e1d3-4507-8d29-7b4c89200534")
+php ./bin/admindashboard.php createCourseOffering
+php ./bin/admindashboard.php CreateInstructEnrollment
+php ./bin/admindashboard.php CreateTAEnrollment
+${CRON_HOME}/bin/healthcheck-finish "8398ee68-e1d3-4507-8d29-7b4c89200534" $RUN_ID

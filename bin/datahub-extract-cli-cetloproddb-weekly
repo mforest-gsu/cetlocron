@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/data/cetlocron/bin/datahub-extract-cli "cetloproddb" "4ca5e8a0-b582-4d0b-9234-199df83d7677"
