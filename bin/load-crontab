@@ -2,4 +2,4 @@
 
 source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/env || exit 1
 
-cat ${CRON_HOME}/conf/crontab | crontab - && crontab -l
+cat ${CRON_CRON}/crontab | crontab - && crontab -l

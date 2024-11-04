@@ -1,9 +1,6 @@
 #!/bin/bash
 
 source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/env || exit 1
-_prepare_locking
-exlock_now || exit 1
-exec >> ${APP_LOG} 2>&1
-cd ${APP_DIR}
+source ${CRON_CONF}/init || exit 1
 
 ./bin/console courses:import-outcomes
