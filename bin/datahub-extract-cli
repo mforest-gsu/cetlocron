@@ -6,7 +6,7 @@ CRON_APP_DIR=${CRON_APPS}/core-impacts-import
 APP_NAME="${CRON_APP_NAME}"
 APP_ENV="${1}"
 APP_PING="https://hc-ping.com/${2}"
-export CRON_APP_LOG CRON_APP_DIR APP_NAME APP_ENV APP_PING 
-source ${CRON_APP_DIR}/init || exit 1
+export CRON_APP_LOG CRON_APP_DIR APP_NAME APP_ENV APP_PING
+init || exit 1
 
 [ -n "${1}" ] && [ -n "${2}" ] && ./bin/crons/run ${APP_PING}

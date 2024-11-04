@@ -1,6 +1,6 @@
 #!/bin/bash
 
 source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/env || exit 1
-source ${CRON_CONF}/init || exit 1
+init || exit 1
 
 ./bin/console

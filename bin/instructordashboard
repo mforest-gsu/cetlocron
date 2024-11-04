@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/env || exit 1
-source ${CRON_CONF}/init || exit 1
+init || exit 1
 
 RUN_ID=$(${CRON_BIN}/bin/healthcheck-start "fa5c1aaa-0153-4b66-9e83-143a3991a9f9" $RUN_ID)
 mysql < ./instructordashboard-EnrollmentHistory.sql
