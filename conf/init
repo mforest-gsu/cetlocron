@@ -1,6 +1,0 @@
-#!/bin/bash
-
-_prepare_locking
-exlock_now || exit 1
-exec >> ${CRON_APP_LOG} 2>&1
-cd ${CRON_APP_DIR}
