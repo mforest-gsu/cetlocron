@@ -1,12 +1,11 @@
 #!/bin/bash
 
 source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/env || exit 1
-CRON_APP_LOG=${CRON_LOGS}/${CRON_APP_NAME}-${CRON_APP_ENV}-$(date +\%Y-\%m-\%d).out
-CRON_APP_DIR=${CRON_APPS}/core-impacts-import
 APP_NAME="${CRON_APP_NAME}"
 APP_ENV="${1}"
 APP_PING="https://hc-ping.com/${2}"
-export CRON_APP_LOG CRON_APP_DIR APP_NAME APP_ENV APP_PING
+CRON_APP_LOG=${CRON_LOGS}/${CRON_APP_NAME}-${APP_ENV}-$(date +\%Y-\%m-\%d).out
+export APP_NAME APP_ENV APP_PING CRON_APP_LOG
 init || exit 1
 
 [ -n "${1}" ] && [ -n "${2}" ] && ./bin/crons/run ${APP_PING}
