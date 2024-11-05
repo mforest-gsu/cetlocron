@@ -3,8 +3,12 @@
 source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/env || exit 1
 init || exit 1
 
-RUN_ID=$(${CRON_BIN}/bin/healthcheck-start "fa5c1aaa-0153-4b66-9e83-143a3991a9f9" $RUN_ID)
-mysql < ./instructordashboard-EnrollmentHistory.sql
-mysql < ./instructordashboard-EnrollmentTable.sql
-mysql < ./makeCourseWeb.sql
+RUN_ID=$(${CRON_BIN}/bin/healthcheck-start "fa5c1aaa-0153-4b66-9e83-143a3991a9f9")
+${CRON_BIN}/healthcheck-start "0898354b-9901-418e-9cf1-4556d0c61c9d" $RUN_ID
+
+mysql < ./instructordashboard-EnrollmentHistory.sql || exit 1
+mysql < ./instructordashboard-EnrollmentTable.sql || exit 1
+mysql < ./makeCourseWeb.sql || exit 1
+
+${CRON_BIN}/healthcheck-finish "0898354b-9901-418e-9cf1-4556d0c61c9d" $RUN_ID
 ${CRON_BIN}/healthcheck-finish "fa5c1aaa-0153-4b66-9e83-143a3991a9f9" $RUN_ID

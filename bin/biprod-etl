@@ -3,8 +3,12 @@
 source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/env || exit 1
 init || exit 1
 
+RUN_ID=$(${CRON_BIN}/healthcheck-start "d1ccb242-f22f-43d0-9ff2-3eb7273c9671")
+
 php-cron ${CRON_APP_DIR} ./bin/console biprod:sso || exit 1
 ./bin/console biprod:sis || exit 1
 ./bin/console biprod:d2l || exit 1
 ./bin/console biprod:lms || exit 1
 ./bin/console biprod:skill || exit 1
+
+${CRON_BIN}/healthcheck-finish "d1ccb242-f22f-43d0-9ff2-3eb7273c9671" $RUN_ID

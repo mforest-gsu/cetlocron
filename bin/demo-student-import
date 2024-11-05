@@ -3,4 +3,8 @@
 source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/env || exit 1
 init || exit 1
 
-./bin/console
+RUN_ID=$(${CRON_BIN}/healthcheck-start "26a08a90-9042-45e5-bab5-3fed344dacb7")
+
+./bin/console || exit 1
+
+${CRON_BIN}/healthcheck-finish "26a08a90-9042-45e5-bab5-3fed344dacb7" $RUN_ID

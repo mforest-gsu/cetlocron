@@ -4,4 +4,8 @@ source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/env || exit 1
 export CRON_APP_DIR=${CRON_APPS}/core-impacts-import
 init || exit 1
 
-./bin/console -vvv app:sync-course-sections
+RUN_ID=$(${CRON_BIN}/healthcheck-start "99b9f54c-bab8-486e-b683-db778e57f316")
+
+./bin/console -vvv app:sync-course-sections || exit 1
+
+${CRON_BIN}/healthcheck-finish "99b9f54c-bab8-486e-b683-db778e57f316" $RUN_ID

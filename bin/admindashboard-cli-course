@@ -4,7 +4,11 @@ source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/env || exit 1
 export CRON_APP_DIR=${CRON_APPS}/admindashboard-cli
 init || exit 1
 
-RUN_ID=$(${CRON_BIN}/healthcheck-start "eb266fe6-727d-4ce5-9994-50ffe987d54e" $RUN_ID)
-php ./bin/admindashboard.php createCourses
-php ./bin/admindashboard.php createEnrollment
+RUN_ID=$(${CRON_BIN}/healthcheck-start "eb266fe6-727d-4ce5-9994-50ffe987d54e")
+${CRON_BIN}/healthcheck-start "d8bee0d7-a9a2-4b45-9f82-0b79091c13ac" $RUN_ID
+
+php ./bin/admindashboard.php createCourses || exit 1
+php ./bin/admindashboard.php createEnrollment || exit 1
+
+${CRON_BIN}/healthcheck-finish "d8bee0d7-a9a2-4b45-9f82-0b79091c13ac" $RUN_ID
 ${CRON_BIN}/healthcheck-finish "eb266fe6-727d-4ce5-9994-50ffe987d54e" $RUN_ID

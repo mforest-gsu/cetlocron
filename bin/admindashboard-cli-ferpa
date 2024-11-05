@@ -5,7 +5,11 @@ export CRON_APP_DIR=${CRON_APPS}/admindashboard-cli
 init || exit 1
 
 RUN_ID=$(${CRON_BIN}/healthcheck-start "8398ee68-e1d3-4507-8d29-7b4c89200534")
-php ./bin/admindashboard.php createCourseOffering
-php ./bin/admindashboard.php CreateInstructEnrollment
-php ./bin/admindashboard.php CreateTAEnrollment
+${CRON_BIN}/healthcheck-start "d8bee0d7-a9a2-4b45-9f82-0b79091c13ac" $RUN_ID
+
+php ./bin/admindashboard.php createCourseOffering || exit 1
+php ./bin/admindashboard.php CreateInstructEnrollment || exit 1
+php ./bin/admindashboard.php CreateTAEnrollment || exit 1
+
+${CRON_BIN}/healthcheck-finish "d8bee0d7-a9a2-4b45-9f82-0b79091c13ac" $RUN_ID
 ${CRON_BIN}/healthcheck-finish "8398ee68-e1d3-4507-8d29-7b4c89200534" $RUN_ID

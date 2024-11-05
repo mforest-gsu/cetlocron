@@ -3,5 +3,9 @@
 source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/env || exit 1
 init || exit 1
 
-mysql SkillsBriefcase < ./SkillsBriefcase_schema.sql
-mysql SkillsBriefcase < ./SkillsBriefcase_data.sql
+RUN_ID=$(${CRON_BIN}/healthcheck-start "c937ac4d-12b8-4067-bc26-fcd9341e9b0f")
+
+mysql SkillsBriefcase < ./SkillsBriefcase_schema.sql || exit 1
+mysql SkillsBriefcase < ./SkillsBriefcase_data.sql || exit 1
+
+${CRON_BIN}/healthcheck-finish "c937ac4d-12b8-4067-bc26-fcd9341e9b0f" $RUN_ID
