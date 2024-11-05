@@ -2,7 +2,8 @@
 
 source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/system.env || exit 1
 
-RUN_ID=$(uuidgen)
-[ -z "${1}" ] || exit 1
+RUN_ID="${2}"
+RUN_ID=${RUN_ID:=$(uuidgen)}
+[ -n "${1}" ] || exit 1
 curl -L -f -s -m 10 --retry 5 "https://hc-ping.com/${1}/start?rid=${RUN_ID}" > /dev/null 2>&1 || exit 22
 echo $RUN_ID
