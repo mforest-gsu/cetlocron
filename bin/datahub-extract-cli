@@ -8,4 +8,9 @@ CRON_APP_LOG=${CRON_LOGS}/${CRON_APP_NAME}-${APP_ENV}-$(date +\%Y-\%m-\%d).out
 export APP_NAME APP_ENV APP_PING CRON_APP_LOG
 init || exit 1
 
-[ -n "${1}" ] && [ -n "${2}" ] && ./bin/crons/run ${APP_PING}
+if [ -z "${1}" ] || [ -z "${2}" ]
+then
+  exit 1
+fi
+
+./bin/crons/run ${APP_PING} || exit 1
