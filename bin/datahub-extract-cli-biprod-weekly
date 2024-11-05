@@ -1,3 +1,0 @@
-#!/bin/bash
-
-/data/cetlocron/bin/datahub-extract-cli "biprod" "b5d367ec-b9c9-421c-8886-ca84df583c7d"
