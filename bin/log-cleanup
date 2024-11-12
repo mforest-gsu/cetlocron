@@ -5,9 +5,19 @@ export CRON_APP_DIR=${CRON_LOGS}
 init || exit 1
 
 uptime
+
 echo
 echo "Deleted files:"
-for file in $(find -type f -mtime +90); do echo $(realpath ${file}); rm -f ${file}; done
+for file in $(find -type f -mtime +90 | grep -Ev "^\\./\\.")
+do
+  echo $(realpath ${file})
+  rm -f ${file}
+done
+
 echo
 echo "Compressed files:"
-for file in $(find -type f -mtime +7 | grep -v ".gz$"); do echo $(realpath ${file}); gzip ${file}; done
+for file in $(find -type f -mtime +7 | grep -Ev "^\\./\\.")
+do
+  echo $(realpath ${file})
+  gzip ${file}
+done
