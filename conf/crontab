@@ -20,8 +20,7 @@ CRON_LOG=/data/cetlocron/logs/crontab
 */15   8-20   *      *    *      ${CRON_BIN}/core-impacts-update >> ${CRON_LOG}-`date +\%Y-\%m-\%d`.out 2>&1
 
 ## datahub-extract-cli
-0      4      *      *    1-6    ${CRON_BIN}/datahub-extract-cli-biprod >> ${CRON_LOG}-`date +\%Y-\%m-\%d`.out 2>&1
-0      8      *      *    0      ${CRON_BIN}/datahub-extract-cli-biprod >> ${CRON_LOG}-`date +\%Y-\%m-\%d`.out 2>&1
+0      4      *      *    *      ${CRON_BIN}/datahub-extract-cli-biprod >> ${CRON_LOG}-`date +\%Y-\%m-\%d`.out 2>&1
 0      5      *      *    1-6    ${CRON_BIN}/datahub-extract-cli-cetloproddb >> ${CRON_LOG}-`date +\%Y-\%m-\%d`.out 2>&1
 0      12     *      *    0      ${CRON_BIN}/datahub-extract-cli-cetloproddb >> ${CRON_LOG}-`date +\%Y-\%m-\%d`.out 2>&1
 
