@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/env || exit 1
-export CRON_APP_DIR=${CRON_APPS}/core-impacts-import
+export CRON_APP_DIR=${CRON_APPS}/syllabus-verification-server
 init || exit 1
 
 RUN_ID=$(${CRON_BIN}/healthcheck-start "99b9f54c-bab8-486e-b683-db778e57f316")
