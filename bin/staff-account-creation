@@ -1,0 +1,10 @@
+#!/bin/bash
+
+source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/env || exit 1
+init || exit 1
+
+RUN_ID=$(${CRON_BIN}/healthcheck-start "ca8a3bc7-b316-479f-9a66-833ef3911524")
+
+./bin/main || exit 1
+
+${CRON_BIN}/healthcheck-finish "ca8a3bc7-b316-479f-9a66-833ef3911524" $RUN_ID

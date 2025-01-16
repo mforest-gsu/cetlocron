@@ -38,5 +38,8 @@ CRON_LOG=/data/cetlocron/logs/crontab
 0      7      *      *    1-6    ${CRON_BIN}/skills-briefcase-import >> ${CRON_LOG}-`date +\%Y-\%m-\%d`.out 2>&1
 0      19     *      *    0      ${CRON_BIN}/skills-briefcase-import >> ${CRON_LOG}-`date +\%Y-\%m-\%d`.out 2>&1
 
+## staff-account-creation
+0      7      *      *    1-6    ${CRON_BIN}/staff-account-creation >> ${CRON_LOG}-`date +\%Y-\%m-\%d`.out 2>&1
+
 ## syllabus-verification-sync
 */15   8-20   *      *    *      ${CRON_BIN}/syllabus-verification-sync >> ${CRON_LOG}-`date +\%Y-\%m-\%d`.out 2>&1
