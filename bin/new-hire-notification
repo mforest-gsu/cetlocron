@@ -1,0 +1,12 @@
+#!/bin/bash
+
+source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/env || exit 1
+init || exit 1
+
+TRACKER_LOG="/data/www/new-hire-notifications/tracker.log"
+
+#RUN_ID=$(${CRON_BIN}/healthcheck-start "")
+
+./bin/console app:load-tracking-data ${TRACKER_LOG} || exit 1
+
+#${CRON_BIN}/healthcheck-finish "" $RUN_ID
