@@ -6,5 +6,6 @@ init || exit 1
 RUN_ID=$(${CRON_BIN}/healthcheck-start "33b07ca5-5e8b-4093-99b3-3e8499cd894f")
 
 ./bin/console app:main || exit 1
+./bin/console app:orgunits || exit 1
 
 ${CRON_BIN}/healthcheck-finish "33b07ca5-5e8b-4093-99b3-3e8499cd894f" $RUN_ID
