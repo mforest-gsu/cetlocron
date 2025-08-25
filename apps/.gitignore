@@ -1,7 +1,6 @@
 .*
 admindashboard-cli
 biprod-etl
-core-impacts-import
 datahub-extract-cli
 demo-student-import
 instructordashboard
@@ -9,5 +8,6 @@ kaltura-tools
 new-hire-notification
 skills-briefcase-import
 staff-account-creation
+syllabus-portal-server
 syllabus-verification-server
 !.gitignore
