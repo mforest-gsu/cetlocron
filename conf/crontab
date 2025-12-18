@@ -30,6 +30,7 @@ CRON_LOG=/data/cetlocron/logs/crontab
 
 ## kaltura-tools
 */30   *      *      *    *      ${CRON_BIN}/kaltura-tools >> ${CRON_LOG}-`date +\%Y-\%m-\%d`.out 2>&1
+0      0      1      *    *      ${CRON_BIN}/kaltura-tools-views >> ${CRON_LOG}-'date +\%Y-\%m-\%d'.out 2>&1
 
 ## log-cleanup
 0      1      *      *    *      ${CRON_BIN}/log-cleanup >> ${CRON_LOG}-`date +\%Y-\%m-\%d`.out 2>&1

@@ -1,10 +1,13 @@
 .*
 admindashboard-cli
 biprod-etl
+core-impacts-import
 datahub-extract-cli
 demo-student-import
+generate-discussion-post
 instructordashboard
 kaltura-tools
+kaltura-tools2
 new-hire-notification
 skills-briefcase-import
 staff-account-creation

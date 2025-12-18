@@ -1,0 +1,11 @@
+#!/bin/bash
+
+source $(dirname $(dirname $(realpath ${BASH_SOURCE[0]})))/conf/env || exit 1
+init || exit 1
+
+#RUN_ID=$(${CRON_BIN}/healthcheck-start "84e05da1-9e87-467b-9f57-cdf32f30910f")
+#${CRON_BIN}/healthcheck-start "dc7de211-b665-4789-8095-12965b8c9207" $RUN_ID
+
+php ./bin/kalturaTools.php UpdateViewsAndPlays || exit 1
+
+#${CRON_BIN}/healthcheck-finish "84e05da1-9e87-467b-9f57-cdf32f30910f" $RUN_ID
